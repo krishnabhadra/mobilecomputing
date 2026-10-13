@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101828">
+  <title>WLAN Share — Local File Transfer</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="/" aria-label="WLAN Share home">
+      <span class="brand-mark">↗</span><span>WLAN<span class="brand-light">Share</span></span>
+    </a>
+    <div class="network-pill"><span class="pulse"></span><span id="networkLabel">Checking local network</span></div>
+  </header>
+
+  <main class="shell">
+    <section class="hero">
+      <div class="eyebrow"><span class="eyebrow-dot"></span> LOCAL NETWORK · NO CLOUD REQUIRED</div>
+      <h1>Files move better<br><span>when you're connected.</span></h1>
+      <p class="hero-copy">Share documents, photos and videos between devices on the same Wi-Fi network. Fast, simple, and kept on your local network.</p>
+      <div class="hero-stats">
+        <div><strong>01</strong><span>Connect to Wi-Fi</span></div>
+        <i></i><div><strong>02</strong><span>Choose a file</span></div>
+        <i></i><div><strong>03</strong><span>Download anywhere</span></div>
+      </div>
+    </section>
+
+    <section class="connection-card">
+      <div class="connection-icon">⌁</div>
+      <div class="connection-content">
+        <div class="card-kicker">YOUR SHARING ADDRESS</div>
+        <h2>Open this page on another device</h2>
+        <p>Connect both devices to the same Wi-Fi, then open one of these addresses on the receiving device.</p>
+        <div id="addresses" class="addresses"><span class="muted">Detecting this device's local IP address…</span></div>
+      </div>
+      <button id="copyAddress" class="button button-ghost" type="button">Copy address</button>
+    </section>
+
+    <div class="main-grid">
+      <section class="panel upload-panel">
+        <div class="panel-heading">
+          <div><div class="card-kicker">SEND A FILE</div><h2>Drop it like it's local.</h2></div>
+          <span class="heading-icon">↑</span>
+        </div>
+        <form id="uploadForm">
+          <label id="dropZone" class="drop-zone" for="fileInput">
+            <input id="fileInput" type="file" required>
+            <span class="upload-symbol">↑</span>
+            <strong>Drop a file here</strong>
+            <span class="drop-sub">or <span class="browse">browse your device</span></span>
+            <span class="file-limit">Maximum file size: 1 GB</span>
+          </label>
+          <div id="selectedFile" class="selected-file hidden"></div>
+          <div id="progressWrap" class="progress-wrap hidden">
+            <div class="progress-meta"><span id="progressLabel">Uploading…</span><strong id="progressPercent">0%</strong></div>
+            <div class="progress-track"><div id="progressBar" class="progress-bar"></div></div>
+          </div>
+          <button id="uploadButton" class="button button-primary full-width" type="submit"><span>Upload to this network</span><span>↗</span></button>
+          <p class="privacy-note"><span>◈</span> Files are stored on the computer running this app.</p>
+        </form>
+        <div id="toast" class="toast hidden" role="status"></div>
+      </section>
+
+      <section class="panel files-panel">
+        <div class="panel-heading files-heading">
+          <div><div class="card-kicker">AVAILABLE ON THIS NETWORK</div><h2>Shared files <span id="fileCount" class="count-badge">0</span></h2></div>
+          <button id="refreshButton" class="icon-button" type="button" aria-label="Refresh files" title="Refresh">↻</button>
+        </div>
+        <div class="file-tools">
+          <label class="search-box"><span>⌕</span><input id="searchInput" type="search" placeholder="Find a file…" aria-label="Search shared files"></label>
+          <select id="typeFilter" aria-label="Filter files">
+            <option value="all">All files</option><option value="image">Images</option><option value="video">Videos</option><option value="application">Documents & other</option><option value="audio">Audio</option>
+          </select>
+        </div>
+        <div id="fileList" class="file-list">
+          <div class="empty-state"><span class="empty-icon">▤</span><strong>No shared files yet</strong><p>Upload a file and it will appear here for other devices to download.</p></div>
+        </div>
+        <div class="files-footer"><span><span class="status-dot"></span> Stored locally</span><span id="totalSize">0 B shared</span></div>
+      </section>
+    </div>
+
+    <section class="how-section">
+      <div><div class="card-kicker">HOW IT WORKS</div><h2>Simple by design.</h2></div>
+      <div class="how-cards">
+        <article><span class="step-number">01</span><div class="how-icon">⌁</div><h3>Join the same Wi-Fi</h3><p>Connect your phone and computer to the same trusted wireless network.</p></article>
+        <article><span class="step-number">02</span><div class="how-icon">↑</div><h3>Upload from any device</h3><p>Open the local address in a browser and choose a file to share.</p></article>
+        <article><span class="step-number">03</span><div class="how-icon">↓</div><h3>Download it locally</h3><p>Other connected devices can find the file and download a copy.</p></article>
+      </div>
+    </section>
+
+    <section class="notice"><span>ⓘ</span><p><strong>Project demo note:</strong> This app uses a local web server. It does not upload files to a cloud service. Anyone who can reach the server may be able to view or download shared files, so use a trusted network and do not share sensitive files. For a classroom demo, stop the server when finished.</p></section>
+  </main>
+
+  <footer><span>WLAN<span class="brand-light">Share</span> <span class="footer-divider">/</span> Mobile Computing Project</span><span>Local transfer. Less friction.</span></footer>
+  <script src="/app.js"></script>
+</body>
+</html>
